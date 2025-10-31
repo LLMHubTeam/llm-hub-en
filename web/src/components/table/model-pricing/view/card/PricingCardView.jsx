@@ -215,7 +215,7 @@ const PricingCardView = ({
 
   return (
     <div className='px-2 pt-2'>
-      <div className='grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4'>
+      <div className='modern-grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3'>
         {paginatedModels.map((model, index) => {
           const modelKey = getModelKey(model);
           const isSelected = selectedRowKeys.includes(modelKey);
@@ -232,8 +232,8 @@ const PricingCardView = ({
           return (
             <Card
               key={modelKey || index}
-              className={`!rounded-2xl transition-all duration-200 hover:shadow-lg border cursor-pointer ${isSelected ? CARD_STYLES.selected : CARD_STYLES.default}`}
-              bodyStyle={{ height: '100%' }}
+              className={`modern-card shadow-soft hover:shadow-medium transition-all cursor-pointer ${isSelected ? CARD_STYLES.selected : CARD_STYLES.default}`}
+              bodyStyle={{ height: '100%', padding: '20px' }}
               onClick={() => openModelDetail && openModelDetail(model)}
             >
               <div className='flex flex-col h-full'>
@@ -242,10 +242,10 @@ const PricingCardView = ({
                   <div className='flex items-start space-x-3 flex-1 min-w-0'>
                     {getModelIcon(model)}
                     <div className='flex-1 min-w-0'>
-                      <h3 className='text-lg font-bold text-gray-900 truncate'>
+                      <h3 className='text-lg font-bold text-gray-900 truncate hover:text-semi-color-primary transition-colors'>
                         {model.model_name}
                       </h3>
-                      <div className='flex items-center gap-3 text-xs mt-1'>
+                      <div className='flex items-center gap-3 text-xs mt-2 text-semi-color-text-2'>
                         {formatPriceInfo(priceData, t)}
                       </div>
                     </div>
@@ -258,6 +258,7 @@ const PricingCardView = ({
                       theme='outline'
                       type='tertiary'
                       icon={<Copy size={12} />}
+                      className='modern-button'
                       onClick={(e) => {
                         e.stopPropagation();
                         copyText(model.model_name);

@@ -1,0 +1,581 @@
+/**
+ * Modern Design System
+ * 现代化设计系统样式配置
+ */
+
+/* ========== 动画定义 ========== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ========== 全局样式增强 ========== */
+.modern-page {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* ========== 现代化卡片样式 ========== */
+.modern-card {
+  border-radius: 20px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  overflow: hidden;
+}
+
+.modern-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+.modern-card-gradient {
+  position: relative;
+  background: linear-gradient(135deg, var(--semi-color-bg-1) 0%, var(--semi-color-bg-2) 100%);
+}
+
+.modern-card-glass {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* 深色模式下的玻璃效果 */
+.semi-always-dark .modern-card-glass,
+body[theme-mode='dark'] .modern-card-glass {
+  background: rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ========== 统计卡片样式 ========== */
+.stats-card {
+  border-radius: 24px !important;
+  padding: 24px !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stats-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--semi-color-primary), var(--semi-color-secondary));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.stats-card:hover::before {
+  opacity: 1;
+}
+
+.stats-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* 统计卡片渐变背景 */
+.stats-card-blue {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.stats-card-green {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.stats-card-purple {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+}
+
+.stats-card-orange {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  color: white;
+}
+
+/* ========== 按钮增强样式 ========== */
+.modern-button {
+  border-radius: 12px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.modern-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
+}
+
+.modern-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.modern-icon-button {
+  border-radius: 50% !important;
+  width: 44px !important;
+  height: 44px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modern-icon-button:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* ========== 表格样式增强 ========== */
+.modern-table {
+  border-radius: 16px !important;
+  overflow: hidden;
+}
+
+.modern-table .semi-table-thead > .semi-table-row > .semi-table-row-head {
+  background: linear-gradient(135deg, var(--semi-color-fill-0) 0%, var(--semi-color-fill-1) 100%);
+  font-weight: 600;
+  border-bottom: 2px solid var(--semi-color-border);
+}
+
+.modern-table .semi-table-tbody > .semi-table-row {
+  transition: all 0.2s ease;
+}
+
+.modern-table .semi-table-tbody > .semi-table-row:hover {
+  background: var(--semi-color-fill-0);
+  transform: scale(1.01);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* ========== 输入框样式增强 ========== */
+.modern-input {
+  border-radius: 12px !important;
+  border: 2px solid var(--semi-color-border) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modern-input:focus {
+  border-color: var(--semi-color-primary) !important;
+  box-shadow: 0 0 0 3px rgba(var(--semi-color-primary-rgb), 0.1) !important;
+  transform: translateY(-2px);
+}
+
+/* ========== 标签样式增强 ========== */
+.modern-tag {
+  border-radius: 8px !important;
+  padding: 6px 14px !important;
+  font-weight: 500;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+.modern-tag:hover {
+  transform: scale(1.05);
+}
+
+/* ========== 头像增强样式 ========== */
+.modern-avatar {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modern-avatar:hover {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* ========== 页面容器样式 ========== */
+.modern-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* ========== 页面标题样式 ========== */
+.modern-page-header {
+  margin-bottom: 32px;
+  animation: slideIn 0.5s ease-out;
+}
+
+.modern-page-title {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--semi-color-text-0) 0%, var(--semi-color-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.modern-page-subtitle {
+  font-size: 16px;
+  color: var(--semi-color-text-2);
+  font-weight: 400;
+}
+
+/* ========== 网格布局增强 ========== */
+.modern-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.modern-grid-responsive {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* ========== 分割线样式 ========== */
+.modern-divider {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--semi-color-border) 50%,
+    transparent 100%
+  );
+  margin: 32px 0;
+}
+
+/* ========== 工具提示增强 ========== */
+.modern-tooltip {
+  border-radius: 8px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+  backdrop-filter: blur(10px);
+}
+
+/* ========== 模态框增强 ========== */
+.modern-modal .semi-modal-content {
+  border-radius: 24px !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15) !important;
+}
+
+.modern-modal .semi-modal-header {
+  border-bottom: 2px solid var(--semi-color-border);
+  padding: 24px 32px;
+}
+
+.modern-modal .semi-modal-body {
+  padding: 32px;
+}
+
+/* ========== 抽屉增强 ========== */
+.modern-drawer .semi-drawer-content {
+  backdrop-filter: blur(20px);
+}
+
+/* ========== 加载状态样式 ========== */
+.modern-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--semi-color-fill-0) 0%,
+    var(--semi-color-fill-1) 50%,
+    var(--semi-color-fill-0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+/* ========== 空状态样式 ========== */
+.modern-empty {
+  padding: 64px 32px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.modern-empty-icon {
+  font-size: 64px;
+  opacity: 0.3;
+  margin-bottom: 16px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.modern-empty-text {
+  color: var(--semi-color-text-2);
+  font-size: 16px;
+}
+
+/* ========== 响应式设计 ========== */
+@media (max-width: 768px) {
+  .modern-container {
+    padding: 16px;
+  }
+
+  .modern-page-title {
+    font-size: 24px;
+  }
+
+  .modern-grid {
+    gap: 16px;
+  }
+
+  .stats-card {
+    padding: 16px !important;
+  }
+
+  .modern-card {
+    border-radius: 16px !important;
+  }
+}
+
+/* ========== 滚动条样式 ========== */
+.modern-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.modern-scrollbar::-webkit-scrollbar-track {
+  background: var(--semi-color-fill-0);
+  border-radius: 4px;
+}
+
+.modern-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--semi-color-fill-2);
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.modern-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--semi-color-primary);
+}
+
+/* ========== 页脚现代化样式 ========== */
+.modern-footer {
+  background: linear-gradient(180deg, transparent 0%, var(--semi-color-bg-1) 100%);
+  padding: 80px 0 40px;
+  margin-top: 80px;
+}
+
+.modern-footer-link {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.modern-footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--semi-color-primary);
+  transition: width 0.3s ease;
+}
+
+.modern-footer-link:hover::after {
+  width: 100%;
+}
+
+/* ========== 仪表板特定样式 ========== */
+.dashboard-stat-item {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.dashboard-stat-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+/* ========== 图表容器样式 ========== */
+.modern-chart-container {
+  border-radius: 16px;
+  padding: 20px;
+  background: var(--semi-color-bg-1);
+  transition: all 0.3s ease;
+}
+
+.modern-chart-container:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ========== 页签增强样式 ========== */
+.modern-tabs .semi-tabs-bar {
+  border-radius: 12px !important;
+  background: var(--semi-color-fill-0);
+  padding: 4px;
+}
+
+.modern-tabs .semi-tabs-tab {
+  border-radius: 8px !important;
+  transition: all 0.3s ease;
+}
+
+.modern-tabs .semi-tabs-tab-active {
+  background: var(--semi-color-bg-0) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ========== 徽章增强样式 ========== */
+.modern-badge {
+  border-radius: 12px !important;
+  padding: 2px 8px;
+  font-weight: 600;
+  font-size: 11px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ========== 列表项样式 ========== */
+.modern-list-item {
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+  border: 1px solid var(--semi-color-border);
+}
+
+.modern-list-item:hover {
+  transform: translateX(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--semi-color-primary);
+}
+
+/* ========== 进度条增强 ========== */
+.modern-progress {
+  border-radius: 8px !important;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.modern-progress .semi-progress-line-outer {
+  background: linear-gradient(90deg, var(--semi-color-primary), var(--semi-color-secondary));
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(var(--semi-color-primary-rgb), 0.3);
+}
+
+/* ========== 统计数字动画 ========== */
+.animated-stat-number {
+  display: inline-block;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animated-stat-number:hover {
+  transform: scale(1.1);
+  color: var(--semi-color-primary);
+}
+
+/* ========== 信息卡片 ========== */
+.info-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.info-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.info-card:hover::before {
+  left: 100%;
+}
+
+/* ========== 紧凑间距模式 ========== */
+.compact-mode .modern-grid {
+  gap: 16px;
+}
+
+.compact-mode .stats-card {
+  padding: 16px !important;
+}
+
+/* ========== 辅助类 ========== */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--semi-color-primary), var(--semi-color-secondary));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--semi-color-primary), var(--semi-color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shadow-soft {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-medium {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.shadow-hard {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 16px 48px rgba(0, 0, 0, 0.12);
+}

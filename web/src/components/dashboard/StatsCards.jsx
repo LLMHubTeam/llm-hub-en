@@ -14,33 +14,42 @@ const StatsCards = ({
   const navigate = useNavigate();
   const { t } = useTranslation();
   return (
-    <div className='mb-4'>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
+    <div className='mb-8'>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
         {groupedStatsData.map((group, idx) => (
           <Card
             key={idx}
             {...CARD_PROPS}
-            className={`${group.color} border-0 !rounded-2xl w-full`}
-            title={group.title}
+            className={`stats-card ${group.color} border-0 shadow-medium w-full`}
+            title={
+              <span className='text-white font-semibold text-base'>
+                {group.title}
+              </span>
+            }
           >
             <div className='space-y-4'>
               {group.items.map((item, itemIdx) => (
                 <div
                   key={itemIdx}
-                  className='flex items-center justify-between cursor-pointer'
+                  className='dashboard-stat-item flex items-center justify-between'
                   onClick={item.onClick}
                 >
-                  <div className='flex items-center'>
+                  <div className='flex items-center flex-1'>
                     <Avatar
-                      className='mr-3'
-                      size='small'
-                      color={item.avatarColor}
+                      className='mr-3 modern-avatar'
+                      size='default'
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.2)',
+                        border: '2px solid rgba(255, 255, 255, 0.3)'
+                      }}
                     >
                       {item.icon}
                     </Avatar>
-                    <div>
-                      <div className='text-xs text-gray-500'>{item.title}</div>
-                      <div className='text-lg font-semibold'>
+                    <div className='flex-1'>
+                      <div className='text-xs text-white opacity-80 mb-1'>
+                        {item.title}
+                      </div>
+                      <div className='text-xl font-bold text-white'>
                         <Skeleton
                           loading={loading}
                           active
@@ -49,14 +58,16 @@ const StatsCards = ({
                               active
                               rows={1}
                               style={{
-                                width: '65px',
-                                height: '24px',
+                                width: '80px',
+                                height: '28px',
                                 marginTop: '4px',
                               }}
                             />
                           }
                         >
-                          {item.value}
+                          <span className='animated-stat-number'>
+                            {item.value}
+                          </span>
                         </Skeleton>
                       </div>
                     </div>
@@ -66,6 +77,7 @@ const StatsCards = ({
                       color='white'
                       shape='circle'
                       size='large'
+                      className='modern-tag'
                       onClick={(e) => {
                         e.stopPropagation();
                         navigate('/console/topup');
@@ -76,7 +88,7 @@ const StatsCards = ({
                   ) : (
                     (loading ||
                       (item.trendData && item.trendData.length > 0)) && (
-                      <div className='w-24 h-10'>
+                      <div className='w-28 h-12 ml-2'>
                         <VChart
                           spec={getTrendSpec(item.trendData, item.trendColor)}
                           option={CHART_CONFIG}

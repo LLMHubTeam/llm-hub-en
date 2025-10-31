@@ -141,7 +141,7 @@ const CardPro = ({
 
   return (
     <Card
-      className={`table-scroll-card !rounded-2xl ${className}`}
+      className={`table-scroll-card modern-card shadow-medium ${className}`}
       title={headerContent}
       footer={footerContent}
       shadows={shadows}
@@ -149,7 +149,9 @@ const CardPro = ({
       style={style}
       {...props}
     >
-      {children}
+      <div className='modern-table'>
+        {children}
+      </div>
     </Card>
   );
 };

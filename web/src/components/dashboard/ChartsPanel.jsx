@@ -19,28 +19,29 @@ const ChartsPanel = ({
   return (
     <Card
       {...CARD_PROPS}
-      className={`!rounded-2xl ${hasApiInfoPanel ? 'lg:col-span-3' : ''}`}
+      className={`modern-card shadow-medium ${hasApiInfoPanel ? 'lg:col-span-3' : ''}`}
       title={
         <div className='flex flex-col lg:flex-row lg:items-center lg:justify-between w-full gap-3'>
-          <div className={FLEX_CENTER_GAP2}>
-            <PieChart size={16} />
+          <div className={`${FLEX_CENTER_GAP2} font-semibold text-base`}>
+            <PieChart size={20} className='text-semi-color-primary' />
             {t('模型数据分析')}
           </div>
           <Tabs
-            type='slash'
+            type='button'
             activeKey={activeChartTab}
             onChange={setActiveChartTab}
+            className='modern-tabs'
           >
-            <TabPane tab={<span>{t('消耗分布')}</span>} itemKey='1' />
-            <TabPane tab={<span>{t('消耗趋势')}</span>} itemKey='2' />
-            <TabPane tab={<span>{t('调用次数分布')}</span>} itemKey='3' />
-            <TabPane tab={<span>{t('调用次数排行')}</span>} itemKey='4' />
+            <TabPane tab={<span className='px-2'>{t('消耗分布')}</span>} itemKey='1' />
+            <TabPane tab={<span className='px-2'>{t('消耗趋势')}</span>} itemKey='2' />
+            <TabPane tab={<span className='px-2'>{t('调用次数分布')}</span>} itemKey='3' />
+            <TabPane tab={<span className='px-2'>{t('调用次数排行')}</span>} itemKey='4' />
           </Tabs>
         </div>
       }
-      bodyStyle={{ padding: 0 }}
+      bodyStyle={{ padding: '20px' }}
     >
-      <div className='h-96 p-2'>
+      <div className='modern-chart-container h-96'>
         {activeChartTab === '1' && (
           <VChart spec={spec_line} option={CHART_CONFIG} />
         )}

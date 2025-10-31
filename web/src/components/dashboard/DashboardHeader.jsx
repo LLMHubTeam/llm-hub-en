@@ -10,29 +10,32 @@ const DashboardHeader = ({
   loading,
   t,
 }) => {
-  const ICON_BUTTON_CLASS = 'text-white hover:bg-opacity-80 !rounded-full';
-
   return (
-    <div className='flex items-center justify-between mb-4'>
-      <h2
-        className='text-2xl font-semibold text-gray-800 transition-opacity duration-1000 ease-in-out'
-        style={{ opacity: greetingVisible ? 1 : 0 }}
-      >
-        {getGreeting}
-      </h2>
+    <div className='flex items-center justify-between mb-8 modern-page-header'>
+      <div>
+        <h1
+          className='modern-page-title transition-opacity duration-1000 ease-in-out'
+          style={{ opacity: greetingVisible ? 1 : 0 }}
+        >
+          {getGreeting}
+        </h1>
+        <p className='modern-page-subtitle mt-2'>
+          {t('欢迎回来，查看您的数据统计和系统信息')}
+        </p>
+      </div>
       <div className='flex gap-3'>
         <Button
           type='tertiary'
-          icon={<Search size={16} />}
+          icon={<Search size={18} />}
           onClick={showSearchModal}
-          className={`bg-green-500 hover:bg-green-600 ${ICON_BUTTON_CLASS}`}
+          className='modern-icon-button bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white border-0'
         />
         <Button
           type='tertiary'
-          icon={<RefreshCw size={16} />}
+          icon={<RefreshCw size={18} />}
           onClick={refresh}
           loading={loading}
-          className={`bg-blue-500 hover:bg-blue-600 ${ICON_BUTTON_CLASS}`}
+          className='modern-icon-button bg-gradient-to-r from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white border-0'
         />
       </div>
     </div>

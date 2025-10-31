@@ -19,77 +19,82 @@ const ApiInfoPanel = ({
   return (
     <Card
       {...CARD_PROPS}
-      className='bg-gray-50 border-0 !rounded-2xl'
+      className='modern-card shadow-medium bg-gradient-to-br from-semi-color-bg-1 to-semi-color-bg-2'
       title={
-        <div className={FLEX_CENTER_GAP2}>
-          <Server size={16} />
+        <div className={`${FLEX_CENTER_GAP2} font-semibold text-base`}>
+          <Server size={20} className='text-semi-color-primary' />
           {t('API信息')}
         </div>
       }
-      bodyStyle={{ padding: 0 }}
+      bodyStyle={{ padding: '16px' }}
     >
-      <ScrollableContainer maxHeight='24rem'>
+      <ScrollableContainer maxHeight='24rem' className='modern-scrollbar'>
         {apiInfoData.length > 0 ? (
-          apiInfoData.map((api) => (
+          apiInfoData.map((api, index) => (
             <React.Fragment key={api.id}>
-              <div className='flex p-2 hover:bg-white rounded-lg transition-colors cursor-pointer'>
-                <div className='flex-shrink-0 mr-3'>
-                  <Avatar size='extra-small' color={api.color}>
+              <div className='modern-list-item info-card'>
+                <div className='flex items-start gap-3'>
+                  <Avatar
+                    size='small'
+                    color={api.color}
+                    className='modern-avatar flex-shrink-0'
+                  >
                     {api.route.substring(0, 2)}
                   </Avatar>
-                </div>
-                <div className='flex-1'>
-                  <div className='flex flex-wrap items-center justify-between mb-1 w-full gap-2'>
-                    <span className='text-sm font-medium text-gray-900 !font-bold break-all'>
-                      {api.route}
-                    </span>
-                    <div className='flex items-center gap-1 mt-1 lg:mt-0'>
-                      <Tag
-                        prefixIcon={<Gauge size={12} />}
-                        size='small'
-                        color='white'
-                        shape='circle'
-                        onClick={() => handleSpeedTest(api.url)}
-                        className='cursor-pointer hover:opacity-80 text-xs'
-                      >
-                        {t('测速')}
-                      </Tag>
-                      <Tag
-                        prefixIcon={<ExternalLink size={12} />}
-                        size='small'
-                        color='white'
-                        shape='circle'
-                        onClick={() =>
-                          window.open(api.url, '_blank', 'noopener,noreferrer')
-                        }
-                        className='cursor-pointer hover:opacity-80 text-xs'
-                      >
-                        {t('跳转')}
-                      </Tag>
+                  <div className='flex-1 min-w-0'>
+                    <div className='flex flex-wrap items-center justify-between mb-2 gap-2'>
+                      <span className='text-sm font-semibold !text-semi-color-text-0 break-all'>
+                        {api.route}
+                      </span>
+                      <div className='flex items-center gap-2'>
+                        <Tag
+                          prefixIcon={<Gauge size={12} />}
+                          size='small'
+                          color='blue'
+                          shape='circle'
+                          onClick={() => handleSpeedTest(api.url)}
+                          className='modern-tag cursor-pointer'
+                        >
+                          {t('测速')}
+                        </Tag>
+                        <Tag
+                          prefixIcon={<ExternalLink size={12} />}
+                          size='small'
+                          color='green'
+                          shape='circle'
+                          onClick={() =>
+                            window.open(api.url, '_blank', 'noopener,noreferrer')
+                          }
+                          className='modern-tag cursor-pointer'
+                        >
+                          {t('跳转')}
+                        </Tag>
+                      </div>
+                    </div>
+                    <div
+                      className='text-sm !text-semi-color-primary break-all cursor-pointer hover:underline mb-2 transition-all'
+                      onClick={() => handleCopyUrl(api.url)}
+                    >
+                      {api.url}
+                    </div>
+                    <div className='text-sm !text-semi-color-text-2'>
+                      {api.description}
                     </div>
                   </div>
-                  <div
-                    className='!text-semi-color-primary break-all cursor-pointer hover:underline mb-1'
-                    onClick={() => handleCopyUrl(api.url)}
-                  >
-                    {api.url}
-                  </div>
-                  <div className='text-gray-500'>{api.description}</div>
                 </div>
               </div>
-              <Divider />
+              {index < apiInfoData.length - 1 && <div className='modern-divider my-3' />}
             </React.Fragment>
           ))
         ) : (
-          <div className='flex justify-center items-center min-h-[20rem] w-full'>
-            <Empty
-              image={<IllustrationConstruction style={ILLUSTRATION_SIZE} />}
-              darkModeImage={
-                <IllustrationConstructionDark style={ILLUSTRATION_SIZE} />
-              }
-              title={t('暂无API信息')}
-              description={t('请联系管理员在系统设置中配置API信息')}
-            />
+          <div className='modern-empty'>
+            <div className='modern-empty-icon'>
+              <IllustrationConstruction style={ILLUSTRATION_SIZE} />
+            </div>
+            <div className='modern-empty-text'>
+              <div className='font-semibold mb-2'>{t('暂无API信息')}</div>
+              <div className='text-sm'>{t('请联系管理员在系统设置中配置API信息')}</div>
+            </div>
           </div>
         )}
       </ScrollableContainer>
