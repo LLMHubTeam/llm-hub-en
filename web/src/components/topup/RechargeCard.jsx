@@ -70,24 +70,33 @@ const RechargeCard = ({
   const showAmountSkeleton = useMinimumLoadingTime(amountLoading);
   console.log(' enabled screem ?', enableCreemTopUp, ' products ?', creemProducts);
   return (
-    <Card className='!rounded-2xl shadow-sm border-0'>
+    <Card className='modern-card shadow-medium border-0'>
       {/* 卡片头部 */}
-      <div className='flex items-center justify-between mb-4'>
+      <div className='flex items-center justify-between mb-6'>
         <div className='flex items-center'>
-          <Avatar size='small' color='blue' className='mr-3 shadow-md'>
-            <CreditCard size={16} />
+          <Avatar
+            size='default'
+            className='mr-3 modern-avatar'
+            style={{
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            }}
+          >
+            <CreditCard size={20} />
           </Avatar>
           <div>
-            <Typography.Text className='text-lg font-medium'>
+            <Typography.Text className='text-xl font-bold !text-semi-color-text-0'>
               {t('账户充值')}
             </Typography.Text>
-            <div className='text-xs'>{t('多种充值方式，安全便捷')}</div>
+            <div className='text-sm !text-semi-color-text-2 mt-1'>
+              {t('多种充值方式，安全便捷')}
+            </div>
           </div>
         </div>
         <Button
           icon={<Receipt size={16} />}
           theme='solid'
           onClick={onOpenHistory}
+          className='modern-button'
         >
           {t('账单')}
         </Button>
@@ -96,27 +105,23 @@ const RechargeCard = ({
       <Space vertical style={{ width: '100%' }}>
         {/* 统计数据 */}
         <Card
-          className='!rounded-xl w-full'
+          className='modern-card border-0 w-full overflow-hidden'
           cover={
             <div
-              className='relative h-30'
+              className='relative h-32'
               style={{
-                '--palette-primary-darkerChannel': '37 99 235',
-                backgroundImage: `linear-gradient(0deg, rgba(var(--palette-primary-darkerChannel) / 80%), rgba(var(--palette-primary-darkerChannel) / 80%)), url('/cover-4.webp')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
               }}
             >
-              <div className='relative z-10 h-full flex flex-col justify-between p-4'>
+              <div className='relative z-10 h-full flex flex-col justify-between p-6'>
                 <div className='flex justify-between items-center'>
-                  <Text strong style={{ color: 'white', fontSize: '16px' }}>
+                  <Text strong style={{ color: 'white', fontSize: '18px', fontWeight: 600 }}>
                     {t('账户统计')}
                   </Text>
                 </div>
 
                 {/* 统计数据 */}
-                <div className='grid grid-cols-3 gap-6 mt-4'>
+                <div className='grid grid-cols-3 gap-8 mt-6'>
                   {/* 当前余额 */}
                   <div className='text-center'>
                     <div

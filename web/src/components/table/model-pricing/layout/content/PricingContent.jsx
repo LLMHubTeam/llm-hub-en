@@ -7,6 +7,16 @@ const PricingContent = ({ isMobile, sidebarProps, ...props }) => {
     <div
       className={isMobile ? 'pricing-content-mobile' : 'pricing-scroll-hide'}
     >
+      {/* 页面标题 */}
+      {!isMobile && (
+        <div className='modern-page-header mb-6'>
+          <h1 className='modern-page-title'>{props.t('模型广场')}</h1>
+          <p className='modern-page-subtitle mt-2'>
+            {props.t('浏览所有可用的AI模型，查看价格和详细信息')}
+          </p>
+        </div>
+      )}
+
       {/* 固定的顶部区域（分类介绍 + 搜索和操作） */}
       <div className='pricing-search-header'>
         <PricingTopSection

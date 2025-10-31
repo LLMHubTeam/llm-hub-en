@@ -578,7 +578,7 @@ const TopUp = () => {
   };
 
   return (
-    <div className='w-full max-w-7xl mx-auto relative min-h-screen lg:min-h-0 mt-[60px] px-2'>
+    <div className='modern-page modern-container w-full max-w-7xl mx-auto relative min-h-screen lg:min-h-0'>
       {/* 划转模态框 */}
       <TransferModal
         t={t}
@@ -643,9 +643,17 @@ const TopUp = () => {
         )}
       </Modal>
 
-      {/* 用户信息头部 */}
-      <div className='space-y-6'>
-        <div className='grid grid-cols-1 lg:grid-cols-12 gap-6'>
+      {/* 页面标题 */}
+      <div className='modern-page-header mb-8'>
+        <h1 className='modern-page-title'>{t('钱包管理')}</h1>
+        <p className='modern-page-subtitle mt-2'>
+          {t('管理您的账户余额，充值和邀请奖励')}
+        </p>
+      </div>
+
+      {/* 充值和邀请区域 */}
+      <div className='space-y-8'>
+        <div className='modern-grid grid-cols-1 lg:grid-cols-12'>
           {/* 左侧充值区域 */}
           <div className='lg:col-span-7 space-y-6 w-full'>
             <RechargeCard

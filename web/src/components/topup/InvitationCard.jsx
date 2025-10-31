@@ -21,17 +21,25 @@ const InvitationCard = ({
   handleAffLinkClick,
 }) => {
   return (
-    <Card className='!rounded-2xl shadow-sm border-0'>
+    <Card className='modern-card shadow-medium border-0'>
       {/* 卡片头部 */}
-      <div className='flex items-center mb-4'>
-        <Avatar size='small' color='green' className='mr-3 shadow-md'>
-          <Gift size={16} />
+      <div className='flex items-center mb-6'>
+        <Avatar
+          size='default'
+          className='mr-3 modern-avatar'
+          style={{
+            background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+          }}
+        >
+          <Gift size={20} />
         </Avatar>
         <div>
-          <Typography.Text className='text-lg font-medium'>
+          <Typography.Text className='text-xl font-bold !text-semi-color-text-0'>
             {t('邀请奖励')}
           </Typography.Text>
-          <div className='text-xs'>{t('邀请好友获得额外奖励')}</div>
+          <div className='text-sm !text-semi-color-text-2 mt-1'>
+            {t('邀请好友获得额外奖励')}
+          </div>
         </div>
       </div>
 
@@ -39,22 +47,18 @@ const InvitationCard = ({
       <Space vertical style={{ width: '100%' }}>
         {/* 统计数据统一卡片 */}
         <Card
-          className='!rounded-xl w-full'
+          className='modern-card border-0 w-full overflow-hidden'
           cover={
             <div
-              className='relative h-30'
+              className='relative h-32'
               style={{
-                '--palette-primary-darkerChannel': '0 75 80',
-                backgroundImage: `linear-gradient(0deg, rgba(var(--palette-primary-darkerChannel) / 80%), rgba(var(--palette-primary-darkerChannel) / 80%)), url('/cover-4.webp')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
+                background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
               }}
             >
               {/* 标题和按钮 */}
-              <div className='relative z-10 h-full flex flex-col justify-between p-4'>
+              <div className='relative z-10 h-full flex flex-col justify-between p-6'>
                 <div className='flex justify-between items-center'>
-                  <Text strong style={{ color: 'white', fontSize: '16px' }}>
+                  <Text strong style={{ color: 'white', fontSize: '18px', fontWeight: 600 }}>
                     {t('收益统计')}
                   </Text>
                   <Button
@@ -66,7 +70,8 @@ const InvitationCard = ({
                       userState?.user?.aff_quota <= 0
                     }
                     onClick={() => setOpenTransfer(true)}
-                    className='!rounded-lg'
+                    className='modern-button bg-white !text-semi-color-primary hover:bg-white'
+                    style={{ color: '#f5576c' }}
                   >
                     <Zap size={12} className='mr-1' />
                     {t('划转到余额')}
@@ -74,7 +79,7 @@ const InvitationCard = ({
                 </div>
 
                 {/* 统计数据 */}
-                <div className='grid grid-cols-3 gap-6 mt-4'>
+                <div className='grid grid-cols-3 gap-8 mt-6'>
                   {/* 待使用收益 */}
                   <div className='text-center'>
                     <div
@@ -158,15 +163,15 @@ const InvitationCard = ({
           <Input
             value={affLink}
             readonly
-            className='!rounded-lg'
-            prefix={t('邀请链接')}
+            className='modern-input'
+            prefix={<Text className='font-medium'>{t('邀请链接')}</Text>}
             suffix={
               <Button
                 type='primary'
                 theme='solid'
                 onClick={handleAffLinkClick}
                 icon={<Copy size={14} />}
-                className='!rounded-lg'
+                className='modern-button'
               >
                 {t('复制')}
               </Button>
@@ -176,8 +181,12 @@ const InvitationCard = ({
 
         {/* 奖励说明 */}
         <Card
-          className='!rounded-xl w-full'
-          title={<Text type='tertiary'>{t('奖励说明')}</Text>}
+          className='modern-card shadow-soft w-full'
+          title={
+            <Text strong className='text-base !text-semi-color-text-0'>
+              {t('奖励说明')}
+            </Text>
+          }
         >
           <div className='space-y-3'>
             <div className='flex items-start gap-2'>
