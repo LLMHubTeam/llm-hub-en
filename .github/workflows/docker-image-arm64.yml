@@ -60,7 +60,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            llmhubteam/llm-hub
+            llmhubteam/llm-hub-en
 #            ghcr.io/${{ env.GHCR_REPOSITORY }}
 
       - name: Build & push single-arch (to both registries)
@@ -70,8 +70,8 @@ jobs:
           platforms: ${{ matrix.platform }}
           push: true
           tags: |
-            llmhubteam/llm-hub:${{ env.TAG }}-${{ matrix.arch }}
-            llmhubteam/llm-hub:latest-${{ matrix.arch }}
+            llmhubteam/llm-hub-en:${{ env.TAG }}-${{ matrix.arch }}
+            llmhubteam/llm-hub-en:latest-${{ matrix.arch }}
 #            ghcr.io/${{ env.GHCR_REPOSITORY }}:${{ env.TAG }}-${{ matrix.arch }}
 #            ghcr.io/${{ env.GHCR_REPOSITORY }}:latest-${{ matrix.arch }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -101,14 +101,14 @@ jobs:
       - name: Create & push manifest (Docker Hub - version)
         run: |
           docker buildx imagetools create \
-            -t llmhubteam/llm-hub:${TAG} \
-            llmhubteam/llm-hub:${TAG}-amd64
+            -t llmhubteam/llm-hub-en:${TAG} \
+            llmhubteam/llm-hub-en:${TAG}-amd64
 
       - name: Create & push manifest (Docker Hub - latest)
         run: |
           docker buildx imagetools create \
-            -t llmhubteam/llm-hub:latest \
-            llmhubteam/llm-hub:latest-amd64
+            -t llmhubteam/llm-hub-en:latest \
+            llmhubteam/llm-hub-en:latest-amd64
 
       # ---- GHCR ----
 #      - name: Log in to GHCR
